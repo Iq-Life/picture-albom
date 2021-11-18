@@ -5,14 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export const ActionAreaCard:React.FC = () => {
+export const ActionAreaCard:React.FC<ActionAreaCardType> = ({text, thumbnailUrl}) => {
     return (
-        <Card sx={{ maxWidth: 345, marginTop:5, marginBottom:5}}>
+        <Card sx={{ maxWidth: 345, marginTop:5, marginBottom:8}}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    image={thumbnailUrl}
                     alt="green iguana"
                 />
                 <CardContent>
@@ -20,11 +20,15 @@ export const ActionAreaCard:React.FC = () => {
                         Lizard
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {text}
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
     );
+}
+//type
+type ActionAreaCardType ={
+    text:string
+    thumbnailUrl: string
 }
