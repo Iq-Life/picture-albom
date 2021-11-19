@@ -5,16 +5,18 @@
     display: flex;
     flex-direction: column;
     font-family: "Bradley Hand", cursive;
-    background-color: rgb(32, 38, 45);
+    background: rgb(21, 54, 89);
 
     .title {
+
         padding: 30px 20px;
         display: flex;
         justify-content: center;
         & h1 {
+            border-radius: 10px;
             position: relative;
             color: #FCF2E5;
-            background: #14a37f;
+            background-color: rgb(32, 38, 45);
             font-size: 2.5em;
             font-weight: normal;
             padding: 10px 40px;
@@ -28,14 +30,14 @@
             height: 4px;
             left: 0;
             bottom: -15px;
-            background: #14a37f;
+            background-color: rgb(32, 38, 45);
         }
         & h1:after {
             content: "";
             position: absolute;
             height: 0;
             width: 80%;
-            border-top: 10px solid #14a37f;
+            border-top: 10px solid #20262DFF;
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
             left: 50%;

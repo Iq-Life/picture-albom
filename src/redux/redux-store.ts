@@ -6,7 +6,7 @@ import {ActionTypes, pictureReducer} from "./picture-reducer";
 
 
 export let reducersBatch = combineReducers({
-    pictures: pictureReducer
+    pictureReducer: pictureReducer
 });
 
 let store = createStore(reducersBatch, applyMiddleware(thunkMiddleware));
