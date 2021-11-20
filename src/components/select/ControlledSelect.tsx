@@ -4,9 +4,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 
-export const ControlledSelect: React.FC <ControlledSelectType> = ({
-    setCurrentAlbum
-                                                                  }) => {
+export const ControlledSelect: React.FC<ControlledSelectType> = ({
+                                                                     setCurrentAlbum
+                                                                 }) => {
     const [albumId, setAlbumId] = React.useState<string | number>('');
     const [open, setOpen] = React.useState(false);
 
@@ -23,9 +23,27 @@ export const ControlledSelect: React.FC <ControlledSelectType> = ({
         setOpen(true);
     };
 
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 120,
+                backgroundColor: '#20262d',
+                color: '#1976d2'
+            },
+        },
+    };
+
+    let albums = []
+    for (let i = 1; i <= 100; i++) {
+        albums.push(i)
+    }
+
     return (
         <div>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl sx={{m: 1, minWidth: 120}}>
                 <InputLabel id="controlled-open-select-label">Album</InputLabel>
                 <Select
                     labelId="controlled-open-select-label"
@@ -36,19 +54,20 @@ export const ControlledSelect: React.FC <ControlledSelectType> = ({
                     value={albumId}
                     label="Album"
                     onChange={handleChange}
+                    MenuProps={MenuProps}
                 >
                     <MenuItem value="">
                         <em>all</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
+                    {albums.map(album => (
+                        <MenuItem key={album} value={album}>{album}</MenuItem>
+                    ))}
                 </Select>
             </FormControl>
         </div>
     );
 }
-type ControlledSelectType ={
-    setCurrentAlbum: (albumId:number) => void
+type ControlledSelectType = {
+    setCurrentAlbum: (albumId: number) => void
 }
 

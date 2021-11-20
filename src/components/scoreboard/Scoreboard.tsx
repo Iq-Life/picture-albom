@@ -16,20 +16,24 @@ export const Scoreboard: React.FC<scoreboardType> = ({
             <button className={style.deleteIcon} onClick={() => removePictures(picture.id)}>
                 x
             </button>
-            <div className={style.containerActionAreaCard}><ActionAreaCard id={picture.id} thumbnailUrl={picture.thumbnailUrl} text={picture.title}/></div>
+            <div className={style.containerActionAreaCard}>
+                <ActionAreaCard id={picture.id}
+                                thumbnailUrl={picture.thumbnailUrl}
+                                fullImageUrl={picture.url}
+                                text={picture.title}/>
+            </div>
         </div>
     ))
 
-
     return (
         <div className={style.scoreboard}>
-           <NavigationBar
-               limit={limit}
-               totalPicturesCount={totalPicturesCount}
-               currentPage={currentPage}
-               setCurrentPage={setCurrentPage}
-               setCurrentAlbum={setCurrentAlbum}
-           />
+            <NavigationBar
+                limit={limit}
+                totalPicturesCount={totalPicturesCount}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                setCurrentAlbum={setCurrentAlbum}
+            />
             <div className={style.tile}>
                 {content}
             </div>

@@ -38,7 +38,7 @@ export const ContainerScoreboard: React.FC = () => {
     }, [dispatch])
     const removePictures = useCallback((picturesId:number)=>{
         dispatch(removePicturesAC(picturesId))
-    }, [])
+    }, [dispatch])
 
     return (
         <Scoreboard

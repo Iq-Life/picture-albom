@@ -5,10 +5,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 
-export const ActionAreaCard: React.FC<ActionAreaCardType> = ({text, thumbnailUrl, id}) => {
+export const ActionAreaCard: React.FC<ActionAreaCardType> = ({text, thumbnailUrl,
+                                                                 id,fullImageUrl}) => {
     return (
         <Card sx={{width: 345, bgcolor: '#1e1e1e'}}>
-            <CardActionArea >
+            <CardActionArea href={fullImageUrl} target="_blank">
                 <CardMedia
                     component="img"
                     height="140"
@@ -32,4 +33,5 @@ type ActionAreaCardType = {
     id: number
     text: string
     thumbnailUrl: string
+    fullImageUrl:string
 }

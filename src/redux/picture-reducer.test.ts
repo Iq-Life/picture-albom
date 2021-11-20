@@ -81,6 +81,7 @@ beforeEach(() => {
                 "thumbnailUrl": "https://via.placeholder.com/150/810b14"
             }
         ],
+        countAlbums:[1,2,3,4],
         currentAlbum: 0,
         start: 0,
         limit: 20,

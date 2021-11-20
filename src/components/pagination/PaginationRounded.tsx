@@ -7,7 +7,7 @@ export const PaginationRounded:React.FC<PaginationRounded> = ({pagesCount,curren
 return (
         <Stack spacing={2}>
             <Pagination
-                sx={{fontWeight: 'light'}}
+                sx={{marginRight: 1}}
                 color={"primary"}
                 count={pagesCount}
                 variant="outlined"

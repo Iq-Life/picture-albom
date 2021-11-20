@@ -4,6 +4,7 @@ import {ThunksType} from "./redux-store";
 
 let initialState: initialStateType = {
     pictures: [],
+    countAlbums: [],
     currentAlbum: 0,
     start: 0,
     limit: 20,
@@ -29,7 +30,7 @@ export const pictureReducer = (state = initialState, action: ActionTypes): initi
             return {...state, totalPicturesCount: action.totalPicturesCount}
         }
         case "SET_SELECT_ALBUM": {
-            return {...state, currentAlbum: action.currentAlbum, currentPage: 1, start: 0}
+            return {...state, currentAlbum: action.setCurrentAlbum, currentPage: 1, start: 0}
         }
         default:
             return state
@@ -49,10 +50,13 @@ export const totalPicturesCountAC = (totalPicturesCount: number) => {
     return {type: "TOTAL_PICTURES_COUNT", totalPicturesCount} as const
 }
 export const setSelectedAlbumAC = (currentAlbum: number) => {
-    return {type: "SET_SELECT_ALBUM", currentAlbum} as const
+    return {type: "SET_SELECT_ALBUM", setCurrentAlbum: currentAlbum} as const
+}
+export const setCountAlbumsAC = (currentAlbum: number) => {
+    return {type: "SET_SELECT_ALBUM", setCurrentAlbum: currentAlbum} as const
 }
 
-//thunk
+//thunks
 export const fetchPictures = (start: number, limit: number): ThunksType => (dispatch) => {
     picturesApi.getPictures(start, limit).then((res) => {
         dispatch(totalPicturesCountAC(Number(res.headers["x-total-count"])))
@@ -61,7 +65,6 @@ export const fetchPictures = (start: number, limit: number): ThunksType => (disp
 };
 export const fetchAlbumPictures = (albumId: number, start: number, limit: number): ThunksType => (dispatch, getState) => {
     picturesApi.getAlbumPictures(albumId, start, limit).then((res) => {
-        console.log("respons")
         dispatch(totalPicturesCountAC(Number(res.headers["x-total-count"])))
         dispatch(setPictureAC(res.data))
         const currentAlbumId = getState().pictureReducer.currentAlbum;
@@ -69,17 +72,18 @@ export const fetchAlbumPictures = (albumId: number, start: number, limit: number
             dispatch(setSelectedAlbumAC(albumId))
     })
 };
-//type
+//types
 export type ActionTypes =
     ReturnType<typeof setPictureAC> | ReturnType<typeof setCurrentPageAC> |
     ReturnType<typeof totalPicturesCountAC> | ReturnType<typeof removePicturesAC> |
     ReturnType<typeof setSelectedAlbumAC>
 
 export type initialStateType = {
-    pictures: PictureType[],
+    pictures: PictureType[]
+    countAlbums: number[]
     currentAlbum: number
     start: number
-    limit: number,
+    limit: number
     totalPicturesCount: number
     currentPage: number
 }
