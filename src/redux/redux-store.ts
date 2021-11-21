@@ -3,8 +3,6 @@ import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {ActionTypes, pictureReducer} from "./picture-reducer";
 
 
-
-
 export let reducersBatch = combineReducers({
     pictureReducer: pictureReducer
 });

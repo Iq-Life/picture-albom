@@ -81,7 +81,19 @@ beforeEach(() => {
                 "thumbnailUrl": "https://via.placeholder.com/150/810b14"
             }
         ],
-        countAlbums:[1,2,3,4],
+        albums:
+            [
+                {
+                    userId: 1,
+                    id: 1,
+                    title: '111'
+                },
+                {
+                userId: 2,
+                id: 2,
+                title: '222'
+            }
+            ],
         currentAlbum: 0,
         start: 0,
         limit: 20,
@@ -90,13 +102,14 @@ beforeEach(() => {
     }
 })
 
-test('should be change current page', () => {
+test('should be change current page and the initial value', () => {
 
     const action = setCurrentPageAC(3)
 
     const endState = pictureReducer(startState, action)
 
     expect(endState.currentPage).toBe(3)
+    expect(endState.start).toBe(40)
 })
 test('should be remove current picture', () => {
 

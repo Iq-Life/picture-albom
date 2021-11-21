@@ -1,14 +1,16 @@
-import * as React from 'react';
+import {FC, memo, useState} from "react";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
+import {AlbumsType} from "../../../api/pictures-api";
 
-export const ControlledSelect: React.FC<ControlledSelectType> = ({
-                                                                     setCurrentAlbum
+export const ControlledSelect: FC<ControlledSelectType> = memo(({
+                                                                     setCurrentAlbum,albums
                                                                  }) => {
-    const [albumId, setAlbumId] = React.useState<string | number>('');
-    const [open, setOpen] = React.useState(false);
+
+    const [albumId, setAlbumId] = useState<string | number>('');
+    const [open, setOpen] = useState(false);
 
     const handleChange = (event: SelectChangeEvent<typeof albumId>) => {
         setAlbumId(event.target.value);
@@ -29,17 +31,15 @@ export const ControlledSelect: React.FC<ControlledSelectType> = ({
         PaperProps: {
             style: {
                 maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                width: 120,
+                minWidth: 120,
                 backgroundColor: '#20262d',
                 color: '#1976d2'
             },
         },
     };
 
-    let albums = []
-    for (let i = 1; i <= 100; i++) {
-        albums.push(i)
-    }
+const setAlbums =
+    albums.map(album => (<MenuItem key={album.userId} value={album.id}>{album.id}. {album.title}</MenuItem>))
 
     return (
         <div>
@@ -59,15 +59,15 @@ export const ControlledSelect: React.FC<ControlledSelectType> = ({
                     <MenuItem value="">
                         <em>all</em>
                     </MenuItem>
-                    {albums.map(album => (
-                        <MenuItem key={album} value={album}>{album}</MenuItem>
-                    ))}
+                    {setAlbums}
                 </Select>
             </FormControl>
         </div>
     );
-}
+})
+//type
 type ControlledSelectType = {
+    albums: AlbumsType[]
     setCurrentAlbum: (albumId: number) => void
 }
 

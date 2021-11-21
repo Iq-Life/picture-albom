@@ -1,9 +1,10 @@
-import React from 'react';
+import {FC, memo} from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-export const PaginationRounded:React.FC<PaginationRounded> = ({pagesCount,currentPage,setCurrentPage}) => {
 
+export const PaginationRounded:FC<PaginationRoundedType> = memo(({pagesCount,currentPage,setCurrentPage}) => {
+    console.log('render PaginationRounded')
 return (
         <Stack spacing={2}>
             <Pagination
@@ -18,9 +19,9 @@ return (
             />
         </Stack>
     );
-}
+})
 //type
-type PaginationRounded ={
+type PaginationRoundedType ={
     setCurrentPage:(page:number)=> void
     pagesCount:number
     currentPage:number

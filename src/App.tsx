@@ -1,16 +1,14 @@
-import React from 'react';
+import {FC} from 'react';
 import style from './App.module.scss';
-import {ContainerScoreboard} from "./components/scoreboard/ContainerScoreboard";
+import {Scoreboard} from "./components/scoreboard/Scoreboard";
 
-function App() {
+export const App: FC = () => {
     return (
         <div className={style.App}>
             <div className={style.title}>
                 <h1>Picture-album</h1>
             </div>
-            <ContainerScoreboard/>
+            <Scoreboard/>
         </div>
     );
 }
-
-export default App;

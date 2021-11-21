@@ -1,15 +1,53 @@
-import React from "react";
+import {FC, memo, useCallback, useEffect} from "react";
 import style from "./Scoreboard.module.scss";
-import {PictureType} from "../../api/pictures-api";
-import {ActionAreaCard} from "./ActionAreaCard";
+import {ActionAreaCard} from "./actionAreaCard/ActionAreaCard";
 import {NavigationBar} from "../navigationBar/NavigationBar";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getAlbums,
+    getCurrentAlbum, getCurrentPage, getLimit,
+    getPictures, getStart, getTotalPicturesCount
+} from "../../redux/reducers/getPictures";
+import {
+    fetchAlbumPictures, fetchAlbums, fetchPictures,
+    removePicturesAC, setCurrentPageAC
+} from "../../redux/picture-reducer";
 
 
-export const Scoreboard: React.FC<scoreboardType> = ({
-                                                         pictures, limit, start, setCurrentAlbum,
-                                                         totalPicturesCount, setCurrentPage, currentPage,
-                                                         removePictures
-                                                     }) => {
+export const Scoreboard: FC = memo(() => {
+console.log('render Scoreboard')
+    const pictures = useSelector(getPictures)
+    const albums = useSelector(getAlbums)
+    const limit = useSelector(getLimit)
+    const start = useSelector(getStart)
+    const totalPicturesCount = useSelector(getTotalPicturesCount)
+    const currentPage = useSelector(getCurrentPage)
+    const currentAlbum = useSelector(getCurrentAlbum)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchAlbums())
+    }, [dispatch])
+
+    useEffect(() => {
+        if (currentAlbum) {
+            dispatch(fetchAlbumPictures(currentAlbum, start, limit))
+        } else {
+            dispatch(fetchPictures(start, limit))
+        }
+    }, [currentAlbum, start, limit, dispatch])
+
+//dispatch
+    const setCurrentPage = useCallback((page: number) => {
+        dispatch(setCurrentPageAC(page))
+    }, [dispatch])
+    const setCurrentAlbum = useCallback((albumId: number, start: number, limit: number) => {
+        dispatch(fetchAlbumPictures(albumId, start, limit))
+    }, [dispatch])
+    const removePictures = useCallback((picturesId:number)=>{
+        dispatch(removePicturesAC(picturesId))
+    }, [dispatch])
 
     const content = pictures.map((picture) => (
         <div className={style.tileFragment} key={picture.id}>
@@ -32,22 +70,12 @@ export const Scoreboard: React.FC<scoreboardType> = ({
                 totalPicturesCount={totalPicturesCount}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-                setCurrentAlbum={setCurrentAlbum}
+                albums={albums}
+                setCurrentAlbum={(albumId) => setCurrentAlbum(albumId, start, limit)}
             />
             <div className={style.tile}>
                 {content}
             </div>
         </div>
     )
-}
-//type
-type scoreboardType = {
-    pictures: PictureType[]
-    limit: number
-    start: number
-    totalPicturesCount: number
-    currentPage: number
-    setCurrentPage: (page: number) => void
-    setCurrentAlbum: (albumId: number) => void
-    removePictures: (picturesId: number) => void
-}
+})
