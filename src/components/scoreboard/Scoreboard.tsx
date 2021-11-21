@@ -45,7 +45,7 @@ export const Scoreboard: FC = memo(() => {
     const setCurrentAlbum = useCallback((albumId: number, start: number, limit: number) => {
         dispatch(fetchAlbumPictures(albumId, start, limit))
     }, [dispatch])
-    const removePictures = useCallback((picturesId:number)=>{
+    const removePictures = useCallback((picturesId: number) => {
         dispatch(removePicturesAC(picturesId))
     }, [dispatch])
 
@@ -71,7 +71,8 @@ export const Scoreboard: FC = memo(() => {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 albums={albums}
-                setCurrentAlbum={(albumId) => setCurrentAlbum(albumId, start, limit)}/>
+                setCurrentAlbum={(albumId) => setCurrentAlbum(albumId, start, limit)}
+            />
             <div className={style.tile}>
                 {content}
             </div>

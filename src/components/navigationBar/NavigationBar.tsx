@@ -6,9 +6,9 @@ import {AlbumsType} from "../../api/pictures-api";
 
 
 export const NavigationBar: FC<NavigationBarType> = memo(({
-                                             limit,  setCurrentAlbum, totalPicturesCount,
-                                                setCurrentPage, currentPage,albums
-                                                     }) => {
+                                                              limit, setCurrentAlbum, totalPicturesCount,
+                                                              setCurrentPage, currentPage, albums
+                                                          }) => {
 
     let pagesCount = Math.ceil(totalPicturesCount / limit)
 

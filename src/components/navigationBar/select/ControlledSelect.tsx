@@ -6,8 +6,8 @@ import Select, {SelectChangeEvent} from '@mui/material/Select';
 import {AlbumsType} from "../../../api/pictures-api";
 
 export const ControlledSelect: FC<ControlledSelectType> = memo(({
-                                                                     setCurrentAlbum,albums
-                                                                 }) => {
+                                                                    setCurrentAlbum, albums
+                                                                }) => {
 
     const [albumId, setAlbumId] = useState<string | number>('');
     const [openSelect, setOpenSelect] = useState(false);
@@ -25,12 +25,12 @@ export const ControlledSelect: FC<ControlledSelectType> = memo(({
         setOpenSelect(true);
     };
 
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 8;
+    const itemHeight = 48;
+    const itemPaddingTop = 8;
     const MenuProps = {
         PaperProps: {
             style: {
-                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                maxHeight: itemHeight * 4.5 + itemPaddingTop,
                 minWidth: 120,
                 backgroundColor: '#20262d',
                 color: '#1976d2'
@@ -38,13 +38,13 @@ export const ControlledSelect: FC<ControlledSelectType> = memo(({
         },
     };
 
-const setAlbums =
-    albums.map(album => (<MenuItem key={album.userId} value={album.id}>{album.id}. {album.title}</MenuItem>))
-    console.log('render ControlledSelect')
+    const setAlbums = albums.map(
+        album => (<MenuItem key={album.id} value={album.id}>{album.id}. {album.title}</MenuItem>))
+
     return (
         <div>
             <FormControl sx={{m: 1, minWidth: 120}}>
-                <InputLabel id="controlled-open-select-label">Album</InputLabel>
+                <InputLabel id="controlled-open-select-label">Albums</InputLabel>
                 <Select
                     labelId="controlled-open-select-label"
                     id="controlled-open-select"

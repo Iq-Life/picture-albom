@@ -15,7 +15,7 @@ let initialState: initialStateType = {
 export const pictureReducer = (state = initialState, action: ActionTypes): initialStateType => {
     switch (action.type) {
         case "SET_PICTURES": {
-            return {...state, pictures: action.data.map((picture) => ({...picture}))}
+            return {...state, pictures: action.data}
         }
         case "SET_ALBUMS": {
             return {...state, albums: action.albums}
@@ -65,19 +65,19 @@ export const fetchPictures = (start: number, limit: number): ThunksType => (disp
         dispatch(totalPicturesCountAC(Number(res.headers["x-total-count"])))
         dispatch(setPictureAC(res.data))
     })
-};
+}
 export const fetchAlbumPictures = (albumId: number, start: number, limit: number): ThunksType => (dispatch, getState) => {
     picturesApi.getAlbumPictures(albumId, start, limit).then((res) => {
-        dispatch(totalPicturesCountAC(Number(res.headers["x-total-count"])))
         dispatch(setPictureAC(res.data))
         const currentAlbumId = getState().pictureReducer.currentAlbum;
-        if (albumId !== currentAlbumId)
+        if (albumId !== currentAlbumId) {
+            dispatch(totalPicturesCountAC(Number(res.headers["x-total-count"])))
             dispatch(setSelectedAlbumAC(albumId))
+        }
     })
 }
-export const fetchAlbums = (): ThunksType => (dispatch, getState) => {
+export const fetchAlbums = (): ThunksType => (dispatch) => {
     picturesApi.getAlbums().then((res) => {
-        console.log(res.data)
         dispatch(setAlbumsAC(res.data))
     })
 }

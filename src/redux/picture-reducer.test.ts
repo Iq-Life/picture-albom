@@ -81,8 +81,7 @@ beforeEach(() => {
                 "thumbnailUrl": "https://via.placeholder.com/150/810b14"
             }
         ],
-        albums:
-            [
+        albums: [
                 {
                     userId: 1,
                     id: 1,

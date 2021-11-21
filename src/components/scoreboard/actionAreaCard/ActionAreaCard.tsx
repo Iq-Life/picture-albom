@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
@@ -14,33 +13,33 @@ export const ActionAreaCard: FC<ActionAreaCardType> = memo(({
                                                             }) => {
 
     const [toggle, setToggle] = useState<boolean>(false)
-    const close = () => setToggle(false)
-    const open = () => setToggle(true)
+    const minimizePhoto = () => setToggle(false)
+    const expandPhoto = () => setToggle(true)
 
     const styleBox = {
         position: 'absolute' as 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        boxShadow: 24,
+        boxShadow: 34,
     }
 
     return (
         <div>
             {toggle ?
-        <Modal
-            open={toggle}
-            onClose={close}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={styleBox}>
-                <img src={fullImageUrl} alt={'full size'} onClick={close}/>
-            </Box>
-        </Modal>
+                <Modal
+                    open={toggle}
+                    onClose={minimizePhoto}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={styleBox}>
+                        <img src={fullImageUrl} alt={'full size'} onClick={minimizePhoto}/>
+                    </Box>
+                </Modal>
                 : ''}
             <Card sx={{width: 345, bgcolor: '#1e1e1e'}}>
-                <CardActionArea onClick={open}>
+                <CardActionArea onClick={expandPhoto}>
                     <CardMedia
                         component="img"
                         height="140"
@@ -57,8 +56,7 @@ export const ActionAreaCard: FC<ActionAreaCardType> = memo(({
                     </CardContent>
                 </CardActionArea>
             </Card>
-
-     </div>
+        </div>
     );
 })
 //type
