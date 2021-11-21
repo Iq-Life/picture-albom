@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/picture-albom/static/css/main.d4c97a6c.chunk.css",
+    "main.js": "/picture-albom/static/js/main.6dd680c5.chunk.js",
+    "main.js.map": "/picture-albom/static/js/main.6dd680c5.chunk.js.map",
+    "runtime-main.js": "/picture-albom/static/js/runtime-main.af3db76b.js",
+    "runtime-main.js.map": "/picture-albom/static/js/runtime-main.af3db76b.js.map",
+    "static/js/2.ca4ddf74.chunk.js": "/picture-albom/static/js/2.ca4ddf74.chunk.js",
+    "static/js/2.ca4ddf74.chunk.js.map": "/picture-albom/static/js/2.ca4ddf74.chunk.js.map",
+    "static/js/3.09f837f7.chunk.js": "/picture-albom/static/js/3.09f837f7.chunk.js",
+    "static/js/3.09f837f7.chunk.js.map": "/picture-albom/static/js/3.09f837f7.chunk.js.map",
+    "index.html": "/picture-albom/index.html",
+    "static/css/main.d4c97a6c.chunk.css.map": "/picture-albom/static/css/main.d4c97a6c.chunk.css.map",
+    "static/js/2.ca4ddf74.chunk.js.LICENSE.txt": "/picture-albom/static/js/2.ca4ddf74.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.af3db76b.js",
+    "static/js/2.ca4ddf74.chunk.js",
+    "static/css/main.d4c97a6c.chunk.css",
+    "static/js/main.6dd680c5.chunk.js"
+  ]
+}
