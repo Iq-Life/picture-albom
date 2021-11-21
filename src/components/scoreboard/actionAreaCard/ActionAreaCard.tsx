@@ -5,20 +5,42 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea} from '@mui/material';
 
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
 export const ActionAreaCard: FC<ActionAreaCardType> = memo(({
                                                                 text, thumbnailUrl,
                                                                 id, fullImageUrl
                                                             }) => {
 
     const [toggle, setToggle] = useState<boolean>(false)
+    const close = () => setToggle(false)
+    const open = () => setToggle(true)
+
+    const styleBox = {
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        boxShadow: 24,
+    }
 
     return (
         <div>
             {toggle ?
-               <div/>
+        <Modal
+            open={toggle}
+            onClose={close}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box sx={styleBox}>
+                <img src={fullImageUrl} alt={'full size'} onClick={close}/>
+            </Box>
+        </Modal>
                 : ''}
             <Card sx={{width: 345, bgcolor: '#1e1e1e'}}>
-                <CardActionArea onClick={() => setToggle(!toggle)}>
+                <CardActionArea onClick={open}>
                     <CardMedia
                         component="img"
                         height="140"
@@ -35,7 +57,8 @@ export const ActionAreaCard: FC<ActionAreaCardType> = memo(({
                     </CardContent>
                 </CardActionArea>
             </Card>
-        </div>
+
+     </div>
     );
 })
 //type

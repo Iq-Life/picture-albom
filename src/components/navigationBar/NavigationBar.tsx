@@ -11,7 +11,7 @@ export const NavigationBar: FC<NavigationBarType> = memo(({
                                                      }) => {
 
     let pagesCount = Math.ceil(totalPicturesCount / limit)
-    console.log('render NavigationBar')
+
     return (
         <div className={style.navigationBar}>
             <div>

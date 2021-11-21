@@ -10,19 +10,19 @@ export const ControlledSelect: FC<ControlledSelectType> = memo(({
                                                                  }) => {
 
     const [albumId, setAlbumId] = useState<string | number>('');
-    const [open, setOpen] = useState(false);
+    const [openSelect, setOpenSelect] = useState(false);
 
     const handleChange = (event: SelectChangeEvent<typeof albumId>) => {
         setAlbumId(event.target.value);
         setCurrentAlbum(Number(event.target.value))
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const close = () => {
+        setOpenSelect(false);
     };
 
-    const handleOpen = () => {
-        setOpen(true);
+    const open = () => {
+        setOpenSelect(true);
     };
 
     const ITEM_HEIGHT = 48;
@@ -40,7 +40,7 @@ export const ControlledSelect: FC<ControlledSelectType> = memo(({
 
 const setAlbums =
     albums.map(album => (<MenuItem key={album.userId} value={album.id}>{album.id}. {album.title}</MenuItem>))
-
+    console.log('render ControlledSelect')
     return (
         <div>
             <FormControl sx={{m: 1, minWidth: 120}}>
@@ -48,9 +48,9 @@ const setAlbums =
                 <Select
                     labelId="controlled-open-select-label"
                     id="controlled-open-select"
-                    open={open}
-                    onClose={handleClose}
-                    onOpen={handleOpen}
+                    open={openSelect}
+                    onClose={close}
+                    onOpen={open}
                     value={albumId}
                     label="Album"
                     onChange={handleChange}

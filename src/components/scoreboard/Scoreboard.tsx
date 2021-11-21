@@ -15,7 +15,7 @@ import {
 
 
 export const Scoreboard: FC = memo(() => {
-console.log('render Scoreboard')
+
     const pictures = useSelector(getPictures)
     const albums = useSelector(getAlbums)
     const limit = useSelector(getLimit)
@@ -71,8 +71,7 @@ console.log('render Scoreboard')
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 albums={albums}
-                setCurrentAlbum={(albumId) => setCurrentAlbum(albumId, start, limit)}
-            />
+                setCurrentAlbum={(albumId) => setCurrentAlbum(albumId, start, limit)}/>
             <div className={style.tile}>
                 {content}
             </div>
